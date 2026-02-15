@@ -12,7 +12,8 @@ const scoreEl = document.getElementById('score');
 const timerEl = document.getElementById('timer');
 const dragSumEl = document.getElementById('drag-sum');
 const startBtn = document.getElementById('start-btn');
-const restartBtn = document.getElementById('restart-btn');
+const homeBtn = document.getElementById('home-btn');
+const quitBtn = document.getElementById('quit-btn');
 const gameOverModal = document.getElementById('game-over-modal');
 const finalScoreEl = document.getElementById('final-score');
 const finalApplesEl = document.getElementById('final-apples');
@@ -360,8 +361,12 @@ startBtn.addEventListener('click', () => {
   initGame();
 });
 
-restartBtn.addEventListener('click', () => {
-  initGame();
+homeBtn.addEventListener('click', () => {
+  window.location.href = 'index.html';
+});
+
+quitBtn.addEventListener('click', () => {
+  window.location.href = 'index.html';
 });
 
 // 페이지 로드 시 빈 보드 표시 (게임 시작 전 안내)
@@ -380,14 +385,3 @@ function showEmptyBoard() {
 }
 
 showEmptyBoard();
-
-//game-board {
-  // display: grid;
-  // grid-template-columns: repeat(17, 50px);
-  // grid-template-rows: repeat(10, 50px);
-  // gap: 4px;  /* 2px → 4px로 변경 */
-  // padding: 12px;
-  // background: #fff;
-  // border-radius: 12px;
-  // box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-//}

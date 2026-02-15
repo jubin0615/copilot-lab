@@ -3,61 +3,109 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🍎 사과 게임</title>
+  <title>🍎 사과 게임 홈</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #fce4ec 0%, #fff3e0 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      user-select: none;
+    }
+
+    .home-container { text-align: center; max-width: 580px; width: 100%; }
+
+    .home-title {
+      font-family: 'Jua', sans-serif;
+      font-size: 4rem;
+      color: #c62828;
+      text-shadow: 3px 3px 0px #fff, 4px 4px 0px rgba(0,0,0,0.08);
+      letter-spacing: 3px;
+      margin-bottom: 16px;
+    }
+
+    .home-description {
+      font-size: 1.1rem;
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .home-description strong { color: #c62828; }
+
+    .device-notice {
+      background: #fff;
+      border: 2px solid #ffcc02;
+      border-radius: 14px;
+      padding: 18px 24px;
+      margin-bottom: 36px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    .device-notice .icon { font-size: 2rem; margin-bottom: 8px; }
+
+    .device-notice p {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .device-notice p strong { color: #e65100; }
+
+    .play-btn {
+      display: inline-block;
+      padding: 18px 56px;
+      font-family: 'Jua', sans-serif;
+      font-size: 1.6rem;
+      color: #fff;
+      background: linear-gradient(135deg, #c62828, #e53935);
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(198, 40, 40, 0.35);
+      transition: transform 0.15s, box-shadow 0.2s;
+    }
+
+    .play-btn:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 8px 28px rgba(198, 40, 40, 0.45);
+    }
+
+    .play-btn:active { transform: translateY(0) scale(1); }
+
+    @media (max-width: 480px) {
+      .home-title { font-size: 2.6rem; }
+      .play-btn { padding: 14px 40px; font-size: 1.3rem; }
+    }
+  </style>
 </head>
 <body>
-  <div id="app">
-    <header>
-      <h1>🍎 사과 게임 🍎</h1>
-      <p class="subtitle">드래그로 사과를 선택하여 합이 10이 되면 사라집니다!</p>
-    </header>
+  <div class="home-container">
+    <h1 class="home-title">🍎 사과 게임 🍎</h1>
 
-    <div id="info-bar">
-      <div class="info-item">
-        <span class="info-label">점수</span>
-        <span id="score" class="info-value">0</span>
-      </div>
-      <div class="info-item">
-        <span class="info-label">남은 시간</span>
-        <span id="timer" class="info-value">120</span>
-      </div>
-      <div class="info-item">
-        <span class="info-label">선택 합계</span>
-        <span id="drag-sum" class="info-value">0</span>
-      </div>
-      <div class="info-item">
-        <button id="start-btn">게임 시작</button>
-      </div>
+    <p class="home-description">
+      드래그로 사과를 선택하여 <strong>합이 10</strong>이 되면 사라지는 게임!<br>
+      제한 시간 안에 최대한 많은 사과를 제거해보세요!
+    </p>
+
+    <div class="device-notice">
+      <div class="icon">🖥️ 💻</div>
+      <p>
+        이 게임은 <strong>PC 또는 태블릿</strong> 환경에서 플레이하는 것을 권장합니다.<br>
+        넓은 화면에서 드래그 조작이 훨씬 편리해요!
+      </p>
     </div>
 
-    <div id="game-container">
-      <div id="game-board"></div>
-      <div id="selection-box"></div>
-    </div>
-
-    <!-- 게임 오버 모달 -->
-    <div id="game-over-modal" class="modal hidden">
-      <div class="modal-content">
-        <h2>🍎 게임 종료!</h2>
-        <p>최종 점수: <span id="final-score">0</span></p>
-        <p>제거한 사과: <span id="final-apples">0</span>개</p>
-        <button id="restart-btn">다시 하기</button>
-      </div>
-    </div>
-
-    <!-- 모바일 가로 회전 안내 -->
-    <div id="rotate-overlay">
-      <div class="rotate-content">
-        <div class="rotate-icon">📱</div>
-        <p>화면을 가로로 돌려주세요!</p>
-      </div>
-    </div>
+    <a href="game.html" class="play-btn">🎮 게임 시작</a>
   </div>
-
-  <script src="script.js"></script>
 </body>
 </html>

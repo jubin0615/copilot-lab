@@ -116,6 +116,9 @@ button {
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.1s, box-shadow 0.2s;
+  user-select: auto;
+  -webkit-user-select: auto;
+  pointer-events: auto;
 }
 
 button:hover {

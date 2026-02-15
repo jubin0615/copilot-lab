@@ -91,22 +91,61 @@ function startTimer() {
     }
 
     if (timeLeft <= 0) {
-      endGame();
+      endGame('시간 종료!');
     }
   }, 1000);
 }
 
 // ========== 게임 종료 ==========
-function endGame() {
+function endGame(reason = '게임 종료!') {
   gameActive = false;
   if (timerInterval) {
     clearInterval(timerInterval);
     timerInterval = null;
   }
 
+  // 모달 제목 업데이트
+  const modalTitle = document.querySelector('#game-over-modal h2');
+  modalTitle.textContent = `🍎 ${reason}`;
+
   finalScoreEl.textContent = score;
   finalApplesEl.textContent = removedCount;
   gameOverModal.classList.remove('hidden');
+}
+
+// ========== 가능한 조합 확인 ==========
+function hasValidCombinations() {
+  const activeApples = apples.filter(a => !a.removed);
+  
+  // 남은 사과가 없으면 false
+  if (activeApples.length === 0) return false;
+  
+  // 모든 가능한 조합을 확인 (백트래킹)
+  function findCombination(index, currentSum, usedApples) {
+    // 목표 합에 도달하면 true
+    if (currentSum === TARGET_SUM && usedApples.length > 0) {
+      return true;
+    }
+    
+    // 합이 목표를 초과하거나 모든 사과를 확인했으면 중단
+    if (currentSum > TARGET_SUM || index >= activeApples.length) {
+      return false;
+    }
+    
+    // 현재 사과를 선택하는 경우
+    if (findCombination(index + 1, currentSum + activeApples[index].value, [...usedApples, index])) {
+      return true;
+    }
+    
+    // 현재 사과를 선택하지 않는 경우
+    if (findCombination(index + 1, currentSum, usedApples)) {
+      return true;
+    }
+    
+    return false;
+  }
+  
+  return findCombination(0, 0, []);
 }
 
 // ========== 드래그 선택 시스템 ==========
@@ -269,14 +308,13 @@ function removeApples(applesToRemove) {
   scoreEl.textContent = score;
 
   selectedApples = [];
-}
 
-// 보너스 점수 (한 번에 많이 제거할수록 보너스)
-function calculateBonus(count) {
-  if (count <= 2) return 0;
-  if (count <= 4) return 10;
-  if (count <= 6) return 30;
-  return 50 + (count - 6) * 15;
+  // 사과 제거 후 가능한 조합이 있는지 확인
+  setTimeout(() => {
+    if (gameActive && !hasValidCombinations()) {
+      endGame('더 이상 깰 수 있는 사과가 없습니다!');
+    }
+  }, 500); // 애니메이션 후 확인
 }
 
 // ========== 이벤트 리스너 ==========

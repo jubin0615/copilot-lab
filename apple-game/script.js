@@ -380,3 +380,14 @@ function showEmptyBoard() {
 }
 
 showEmptyBoard();
+
+//game-board {
+  // display: grid;
+  // grid-template-columns: repeat(17, 50px);
+  // grid-template-rows: repeat(10, 50px);
+  // gap: 4px;  /* 2px → 4px로 변경 */
+  // padding: 12px;
+  // background: #fff;
+  // border-radius: 12px;
+  // box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+//}

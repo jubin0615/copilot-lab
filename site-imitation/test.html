@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple (KR) - Apple Cushion</title>
+    <style>
+        :root {
+            --global-nav-background: #161617;
+            --global-nav-text: #f5f5f7;
+            --section-background-dark: #000000;
+            --section-background-light: #fbfbfd;
+            --text-color-dark: #f5f5f7;
+            --text-color-light: #1d1d1f;
+            --link-color: #0066cc;
+            --btn-blue: #0071e3;
+            --footer-bg: #f5f5f7;
+            --footer-text: #6e6e73;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "SF Pro Text", "SF Pro Icons", "Apple Gothic", "HY Gulim", "MalgunGothic", "HY Dotum", "Lexi Gulim", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background-color: #fff;
+            color: var(--text-color-light);
+            line-height: 1.4;
+            min-width: 1024px; /* PC 전용 최소 너비 설정 */
+            overflow-x: auto;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* 1. Global Navigation (PC Fixed) */
+        nav {
+            background-color: rgba(22, 22, 23, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            height: 44px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 9999;
+            font-size: 12px;
+            min-width: 1024px;
+        }
+
+        .nav-content {
+            max-width: 980px;
+            margin: 0 auto;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 22px;
+        }
+
+        .nav-content a {
+            color: #d6d6d6;
+            transition: color 0.3s ease;
+            font-weight: 300; /* Apple Font Weight */
+            opacity: 0.8;
+            letter-spacing: -0.01em;
+        }
+
+        .nav-content a:hover {
+            opacity: 1;
+            color: #fff;
+        }
+
+        /* 2. Promo Ribbon */
+        .ribbon {
+            margin-top: 44px;
+            background-color: #f5f5f7;
+            color: #1d1d1f;
+            padding: 12px 0;
+            text-align: center;
+            font-size: 14px;
+            border-bottom: 1px solid #d2d2d7;
+        }
+        
+        .ribbon a {
+            color: var(--link-color);
+        }
+
+        .ribbon a:hover {
+            text-decoration: underline;
+        }
+
+        /* 3. Hero Section Common Styles */
+        .hero {
+            position: relative;
+            text-align: center;
+            padding-top: 55px;
+            width: 100%;
+            height: 90vh; /* PC 화면 꽉 차게 */
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .hero h2 {
+            font-size: 56px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            letter-spacing: -0.005em;
+        }
+
+        .hero h3 {
+            font-size: 28px;
+            font-weight: 400;
+            margin-bottom: 15px;
+        }
+
+        .cta-links {
+            font-size: 21px;
+            display: flex;
+            gap: 35px;
+            margin-top: 15px;
+            z-index: 10;
+        }
+
+        .cta-links a {
+            color: var(--link-color);
+            display: flex;
+            align-items: center;
+            transition: opacity 0.2s;
+        }
+        
+        .cta-links a:hover {
+            text-decoration: underline;
+        }
+
+        .cta-links a::after {
+            content: " >";
+            font-size: 14px;
+            margin-left: 6px;
+            font-weight: bold;
+            margin-top: 2px;
+        }
+
+        /* Image Placeholder Box (PC layout optimized) */
+        .image-placeholder {
+            margin-top: 50px;
+            width: 1000px; /* PC 정해진 너비 */
+            height: 600px;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #555;
+            font-size: 1.5rem;
+            position: relative; /* absolute position 제거하고 flow 태우기 */
+            /* 실제 구현시 background-image로 대체 */
+        }
+
+        /* Hero 1: Apple Cushion Pro (Dark) */
+        #hero-pro {
+            background-color: #000;
+            color: var(--text-color-dark);
+        }
+
+        #hero-pro h2 {
+            /* Apple Pro Titanium Gradient Text */
+            background: linear-gradient(90deg, #d0d0d0 10%, #ffffff 50%, #d0d0d0 90%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        #hero-pro .cta-links a { 
+            color: #2997ff; 
+        }
+        
+        #hero-pro .image-placeholder {
+            background: radial-gradient(circle at center, #333 0%, #000 70%);
+            border: 1px solid #333;
+            color: #888;
+        }
+
+        /* Hero 2: Apple Cushion (Light) */
+        #hero-standard {
+            background-color: #fbfbfd;
+            color: var(--text-color-light);
+            border-bottom: 15px solid #fff; /* 섹션 구분감 */
+        }
+        
+        #hero-standard .image-placeholder {
+            background: radial-gradient(circle at center, #f5f5f7 0%, #fff 70%);
+            border: 1px solid #e5e5e5;
+        }
+
+        /* 5. Grid Layout (2 Columns Fixed for PC) */
+        .grid-section {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px; /* Apple uses small gap */
+            padding: 15px;
+            background-color: #fff;
+            max-width: 100%;
+        }
+
+        .grid-item {
+            background-color: #fbfbfd;
+            height: 680px; /* PC Grid Height */
+            text-align: center;
+            padding-top: 60px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        /* Interactive Hover Effect only on PC */
+        .grid-item:hover .grid-item-img {
+            transform: scale(1.02);
+            transition: transform 0.5s ease;
+        }
+
+        .grid-item h4 {
+            font-size: 40px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .grid-item p {
+            font-size: 21px;
+            margin-bottom: 15px;
+            max-width: 80%;
+        }
+        
+        .grid-item.dark-mode {
+            background-color: #000;
+            color: #f5f5f7;
+        }
+
+        .grid-item-img {
+            width: 90%;
+            height: 100%;
+            margin-top: 30px;
+            background: #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #aaa;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+        
+        .grid-item.dark-mode .grid-item-img {
+            background: #222;
+            color: #666;
+        }
+
+        /* 6. Footer (PC Layout) */
+        footer {
+            background-color: var(--footer-bg);
+            color: var(--footer-text);
+            font-size: 12px;
+            padding: 40px 0;
+            min-width: 1024px;
+        }
+
+        .footer-content {
+            width: 980px;
+            margin: 0 auto;
+        }
+
+        .footer-notes {
+            padding-bottom: 20px;
+            border-bottom: 1px solid #d2d2d7;
+            margin-bottom: 20px;
+            font-size: 11px;
+            color: #86868b;
+        }
+        
+        .footer-notes p {
+            margin-bottom: 10px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 40px;
+            text-align: left;
+        }
+        
+        .footer-column {
+            flex: 1;
+        }
+
+        .footer-column h3 {
+            font-size: 12px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-column ul li a {
+            color: #424245;
+        }
+
+        .footer-column ul li a:hover {
+            text-decoration: underline;
+            color: #1d1d1f;
+        }
+
+        .footer-bottom {
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #d2d2d7;
+            color: #86868b;
+        }
+
+        .footer-legal-links a {
+            padding: 0 10px;
+            border-right: 1px solid #d2d2d7;
+            color: #424245;
+        }
+        
+        .footer-legal-links a:last-child {
+            border: none;
+        }
+        
+        .footer-legal-links a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- 1. Global Nav -->
+    <nav>
+        <div class="nav-content">
+            <!-- Apple Logo -->
+            <a href="#" style="font-size: 18px;"></a>
+            
+            <a href="#">스토어</a>
+            <a href="#">Mac</a>
+            <a href="#">iPad</a>
+            <a href="#">iPhone</a>
+            <a href="#">Watch</a>
+            <a href="#">Vision</a>
+            <a href="#">AirPods</a>
+            <a href="#">TV 및 홈</a>
+            <a href="#">엔터테인먼트</a>
+            <a href="#">Cushion</a> <!-- New Menu -->
+            <a href="#">고객지원</a>
+            
+            <!-- Icons -->
+            <a href="#">🔍</a>
+            <a href="#">👜</a>
+        </div>
+    </nav>
+
+    <!-- 2. Ribbon -->
+    <div class="ribbon">
+        <p>신용 카드 할부 결제 시 최대 12개월 무이자 혜택. <a href="#">더 알아보기 ></a></p>
+    </div>
+
+    <!-- 3. Hero Section 1: Pro Model (Dark Theme) -->
+    <section id="hero-pro" class="hero">
+        <h2>Apple Cushion Pro</h2>
+        <h3>티타늄. 초강력. 초경량. 초편안.</h3>
+        <div class="cta-links">
+            <a href="#">더 알아보기</a>
+            <a href="#">구입하기</a>
+        </div>
+        <div class="image-placeholder">
+            [Product Image: Titanium Grey Cushion]
+            <br>
+            (1000px x 600px recommended)
+        </div>
+    </section>
+
+    <!-- 4. Hero Section 2: Standard Model (Light Theme) -->
+    <section id="hero-standard" class="hero">
+        <h2>Apple Cushion</h2>
+        <h3>꿈의 색상. 꿈의 편안함.</h3>
+        <div class="cta-links">
+            <a href="#">더 알아보기</a>
+            <a href="#">구입하기</a>
+        </div>
+        <div class="image-placeholder">
+            [Product Image: Pastel Color Variants]
+            <br>
+            (1000px x 600px recommended)
+        </div>
+    </section>
+
+    <!-- 5. Grid Section (Features & Accessories) - PC 2 Col Layout -->
+    <div class="grid-section">
+        <!-- Grid Item 1 -->
+        <div class="grid-item">
+            <h4>SleepOS 18</h4>
+            <p>당신의 수면 데이터를<br>가장 안전하고 스마트하게.</p>
+            <div class="cta-links" style="font-size: 17px; margin-top: 5px;">
+                <a href="#">더 알아보기</a>
+            </div>
+            <div class="grid-item-img">
+                [Image: SleepOS Interface]
+            </div>
+        </div>
+
+        <!-- Grid Item 2 (Dark) -->
+        <div class="grid-item dark-mode">
+            <h4>iPillow Cover</h4>
+            <p>마그네틱으로 착.<br>세탁은 간편하게 툭.</p>
+            <div class="cta-links" style="font-size: 17px; margin-top: 5px;">
+                <a href="#">구입하기</a>
+            </div>
+            <div class="grid-item-img">
+                [Image: Magnetic Accessories]
+            </div>
+        </div>
+        
+        <!-- Grid Item 3 -->
+        <div class="grid-item">
+            <h4>Apple Trade In</h4>
+            <p>쓰던 베개 보상 판매하고,<br>새 쿠션 할인받기.</p>
+            <div class="cta-links" style="font-size: 17px; margin-top: 5px;">
+                <a href="#">견적 확인하기</a>
+            </div>
+            <div class="grid-item-img">
+                [Image: Trade In Icon]
+            </div>
+        </div>
+
+        <!-- Grid Item 4 -->
+        <div class="grid-item">
+            <h4>Apple Card</h4>
+            <p>모든 구매에 대해<br>3% Daily Cash 적립.</p>
+            <div class="cta-links" style="font-size: 17px; margin-top: 5px;">
+                <a href="#">더 알아보기</a>
+            </div>
+            <div class="grid-item-img">
+                [Image: Credit Card]
+            </div>
+        </div>
+    </div>
+
+    <!-- 7. Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-notes">
+                <p>1. 보상 판매 프로그램은 Apple의 파트너사가 아니라 제휴사에서 제공합니다. 보상 판매 견적은 예상치이며 실제 보상 판매 가치는 다를 수 있습니다. 보상 판매는 온/오프라인에서 모두 가능합니다.</p>
+                <p>2. Apple Cushion Pro의 티타늄 소재는 항공우주 등급으로 제작되어 내구성이 뛰어납니다. 실제 무게는 구성 및 제조 과정에 따라 다를 수 있습니다.</p>
+                <p>3. 무이자 할부 혜택은 신용카드사 정책에 따라 변동될 수 있습니다. 자세한 내용은 각 카드사 홈페이지를 참조하십시오.</p>
+                <p>* 월 ₩10,000부터(24개월 할부). 할부 수수료는 카드사 정책에 따릅니다.</p>
+            </div>
+            
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h3>쇼핑 및 알아보기</h3>
+                    <ul>
+                        <li><a href="#">Store</a></li>
+                        <li><a href="#">Mac</a></li>
+                        <li><a href="#">iPad</a></li>
+                        <li><a href="#">iPhone</a></li>
+                        <li><a href="#">Watch</a></li>
+                        <li><a href="#">Vision</a></li>
+                        <li><a href="#">AirPods</a></li>
+                        <li><a href="#">TV 및 홈</a></li>
+                        <li><a href="#">AirTag</a></li>
+                        <li><a href="#">Cushion</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>계정</h3>
+                    <ul>
+                        <li><a href="#">Apple ID 관리</a></li>
+                        <li><a href="#">Apple Store 계정</a></li>
+                        <li><a href="#">iCloud.com</a></li>
+                    </ul>
+                    <br>
+                    <h3>엔터테인먼트</h3>
+                    <ul>
+                        <li><a href="#">Apple One</a></li>
+                        <li><a href="#">Apple TV+</a></li>
+                        <li><a href="#">Apple Music</a></li>
+                        <li><a href="#">Apple Arcade</a></li>
+                        <li><a href="#">Apple Fitness+</a></li>
+                        <li><a href="#">Apple Podcasts</a></li>
+                        <li><a href="#">Apple Books</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Apple Store</h3>
+                    <ul>
+                        <li><a href="#">매장 찾기</a></li>
+                        <li><a href="#">Genius Bar</a></li>
+                        <li><a href="#">Today at Apple</a></li>
+                        <li><a href="#">Apple 캠프</a></li>
+                        <li><a href="#">Apple Store 앱</a></li>
+                        <li><a href="#">리퍼비쉬 및 특가 제품</a></li>
+                        <li><a href="#">금융 혜택</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>비즈니스</h3>
+                    <ul>
+                        <li><a href="#">Apple과 비즈니스</a></li>
+                        <li><a href="#">비즈니스용 쇼핑</a></li>
+                    </ul>
+                    <br>
+                    <h3>교육</h3>
+                    <ul>
+                        <li><a href="#">Apple과 교육</a></li>
+                        <li><a href="#">초중고용 쇼핑</a></li>
+                        <li><a href="#">대학생용 쇼핑</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Apple의 가치관</h3>
+                    <ul>
+                        <li><a href="#">손쉬운 사용</a></li>
+                        <li><a href="#">교육</a></li>
+                        <li><a href="#">환경</a></li>
+                        <li><a href="#">개인정보 보호</a></li>
+                        <li><a href="#">공급망</a></li>
+                    </ul>
+                    <br>
+                    <h3>Apple 소개</h3>
+                    <ul>
+                        <li><a href="#">Newsroom</a></li>
+                        <li><a href="#">Apple 리더십</a></li>
+                        <li><a href="#">채용 안내</a></li>
+                        <li><a href="#">윤리 및 규정 준수</a></li>
+                        <li><a href="#">이벤트</a></li>
+                        <li><a href="#">일자리 창출</a></li>
+                        <li><a href="#">Apple 연락처</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="copyright">
+                    Copyright © 2026 Apple Inc. 모든 권리 보유.
+                </div>
+                <div class="footer-legal-links">
+                    <a href="#">개인정보 처리방침</a>
+                    <a href="#">웹사이트 이용 약관</a>
+                    <a href="#">판매 및 환불</a>
+                    <a href="#">법적 고지</a>
+                    <a href="#">사이트 맵</a>
+                </div>
+                <div class="locale">
+                    대한민국
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

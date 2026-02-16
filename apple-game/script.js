@@ -4,6 +4,8 @@ const ROWS = 10;
 const TOTAL_APPLES = COLS * ROWS;
 const TARGET_SUM = 10;
 const GAME_DURATION = 120; // 초
+const urlParams = new URLSearchParams(window.location.search);
+const gameVersion = urlParams.get('version') || 'seunghyun';
 
 // ========== DOM 요소 ==========
 const gameBoard = document.getElementById('game-board');
@@ -18,6 +20,7 @@ const gameOverModal = document.getElementById('game-over-modal');
 const finalScoreEl = document.getElementById('final-score');
 const finalApplesEl = document.getElementById('final-apples');
 const gameContainer = document.getElementById('game-container');
+const bgOverlay = document.getElementById('bg-overlay');
 
 // ========== 게임 상태 ==========
 let apples = [];         // { value, element, removed }
@@ -33,6 +36,10 @@ let dragStartX = 0;
 let dragStartY = 0;
 let selectedApples = [];
 
+function applyVersionTheme() {
+  document.body.classList.toggle('version-seunghyun', gameVersion === 'seunghyun');
+}
+
 // ========== 초기화 ==========
 function initGame() {
   // 상태 초기화
@@ -47,6 +54,7 @@ function initGame() {
   scoreEl.textContent = '0';
   timerEl.textContent = GAME_DURATION;
   timerEl.classList.remove('warning');
+  bgOverlay.style.opacity = '0';
   dragSumEl.textContent = '0';
   dragSumEl.classList.remove('match', 'over');
   gameOverModal.classList.add('hidden');
@@ -89,6 +97,8 @@ function startTimer() {
 
     if (timeLeft <= 10) {
       timerEl.classList.add('warning');
+      const opacity = Math.min((11 - timeLeft) * 0.07, 0.7);
+      bgOverlay.style.opacity = String(opacity);
     }
 
     if (timeLeft <= 0) {
@@ -384,4 +394,5 @@ function showEmptyBoard() {
   }
 }
 
+applyVersionTheme();
 showEmptyBoard();

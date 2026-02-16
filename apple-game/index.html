@@ -82,8 +82,16 @@
 
     .play-btn:active { transform: translateY(0) scale(1); }
 
+    .version-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
     @media (max-width: 480px) {
       .home-title { font-size: 2.6rem; }
+      .version-buttons { gap: 12px; }
       .play-btn { padding: 14px 40px; font-size: 1.3rem; }
     }
   </style>
@@ -105,7 +113,10 @@
       </p>
     </div>
 
-    <a href="game.html" class="play-btn">🎮 게임 시작</a>
+    <div class="version-buttons">
+      <a href="game.html?version=original" class="play-btn">오리지널 ver</a>
+      <a href="game.html?version=seunghyun" class="play-btn">이승현 ver</a>
+    </div>
   </div>
 </body>
 </html>

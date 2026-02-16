@@ -18,14 +18,12 @@ const homeBtn = document.getElementById('home-btn');
 const quitBtn = document.getElementById('quit-btn');
 const gameOverModal = document.getElementById('game-over-modal');
 const finalScoreEl = document.getElementById('final-score');
-const finalApplesEl = document.getElementById('final-apples');
 const gameContainer = document.getElementById('game-container');
 const bgOverlay = document.getElementById('bg-overlay');
 
 // ========== 게임 상태 ==========
 let apples = [];         // { value, element, removed }
 let score = 0;
-let removedCount = 0;
 let timeLeft = GAME_DURATION;
 let timerInterval = null;
 let gameActive = false;
@@ -45,7 +43,6 @@ function initGame() {
   // 상태 초기화
   apples = [];
   score = 0;
-  removedCount = 0;
   timeLeft = GAME_DURATION;
   gameActive = true;
   selectedApples = [];
@@ -117,10 +114,9 @@ function endGame(reason = '게임 종료!') {
 
   // 모달 제목 업데이트
   const modalTitle = document.querySelector('#game-over-modal h2');
-  modalTitle.textContent = `🍎 ${reason}`;
+  modalTitle.textContent = `${reason}`;
 
   finalScoreEl.textContent = score;
-  finalApplesEl.textContent = removedCount;
   gameOverModal.classList.remove('hidden');
 }
 
@@ -314,7 +310,6 @@ function removeApples(applesToRemove) {
   });
 
   // 점수 갱신
-  removedCount += count;
   score += count;  // 사과 1개당 1점
   scoreEl.textContent = score;
 

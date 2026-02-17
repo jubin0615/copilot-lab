@@ -122,7 +122,7 @@ function endGame(reason = '게임 종료!') {
 
 // ========== 가능한 조합 확인 ==========
 function hasValidCombinations() {
-  const activeApples = apples.filter(a => !a.removed);
+  const activeApples = apples.filter(a => !a.removed);212
   
   // 남은 사과가 없으면 false
   if (activeApples.length === 0) return false;

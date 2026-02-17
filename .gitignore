@@ -1,2 +1,21 @@
-.venv/
+# Environment / secrets
+.env
+.env.*
+*.env
+*.env.*
+
+# Python cache / artifacts
 __pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Editor settings
+.vscode/
+
+# OS files
+.DS_Store
+
+# Selenium log files
+geckodriver.log
+chromedriver.log
